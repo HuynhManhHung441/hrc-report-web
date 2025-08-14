@@ -1,0 +1,52 @@
+.tundish-temp-sporadic-section {
+  margin-top: 100px;          
+  padding-top: 15px;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.tundish-temp-title {
+  color: orange;
+  margin-bottom: 10px;
+  font-weight: lighter;
+}
+
+.tundish-temp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px;
+}
+
+.tundish-temp-table th {
+  border-bottom: 2px solid #ccc;
+  padding: 6px 1px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.tundish-temp-table td {
+  padding: 0px 1px;
+  text-align: left;
+  border-bottom: 3px solid #ddd; 
+}
+
+.tundish-temp-table tr:nth-child(2) td {
+  background-color: #d5d4d4;
+}
+
+.tundish-temp-table th:nth-child(1),
+.tundish-temp-table td:nth-child(1) {
+  width: 120px;
+}
+.tundish-temp-table th:nth-child(2),
+.tundish-temp-table td:nth-child(2),
+.tundish-temp-table th:nth-child(3),
+.tundish-temp-table td:nth-child(3){
+  width: 100px;
+  text-align: right;
+}
+.tundish-temp-table th:nth-child(4),
+.tundish-temp-table td:nth-child(4) {
+  width: 200px;
+  text-align: right;
+}

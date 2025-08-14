@@ -8,9 +8,9 @@ function Header() {
         <Link to="/">HRC Report</Link>
       </div>
       <nav className="navbar-links">
-        <NavLink to="/ccm" activeclassname="active">CCM</NavLink>
-        <NavLink to="/rhf" activeclassname="active">RHF</NavLink>
-        <NavLink to="/hsm" activeclassname="active">HSM</NavLink>
+        <NavLink to="/ccm" className={({ isActive }) => (isActive ? "active" : "")}>CCM</NavLink>
+        <NavLink to="/rhf" className={({ isActive }) => (isActive ? "active" : "")}>RHF</NavLink>
+        <NavLink to="/hsm" className={({ isActive }) => (isActive ? "active" : "")}>HSM</NavLink>
       </nav>
     </header>
   )

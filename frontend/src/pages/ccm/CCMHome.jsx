@@ -1,19 +1,20 @@
-// src/pages/ccm/CCMHome.jsx
+import './CCMHome.css'
+import '../../App.css';
 import { Link } from "react-router-dom"
 
 function CCMHome() {
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Welcome to CCM Home</h2>
-      <ul>
+    <div className="container">
+      <h2 className="ccm-home-title">Pick type report</h2>
+      <ul className="ccm-home-list">
         <li>
-          <Link to="/heat-report">Heat Report</Link>
+          <Link to="/ccm/heat-report">Heat Report</Link>
         </li>
         <li>
-          <Link to="/quality-report">Quality Report</Link>
+          <Link to="/ccm/quality-report">Quality Report</Link>
         </li>
         <li>
-          <Link to="/shift-report">Shift Report</Link>
+          <Link to="/ccm/shift-report">Shift Report</Link>
         </li>
       </ul>
     </div>

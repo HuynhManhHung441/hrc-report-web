@@ -1,4 +1,13 @@
+import './HeatReport.css';
 function HeatReport() {
+  const info = {
+    HEAT_NAME: "H1234",
+    LADLE_OPEN_TIME: "2025-08-14",
+    PLAN_NAME: "Plan A",
+    STEEL_GRADE: "SG123",
+    SHIFT_TEAM_NAME: "Shift 1"
+  };
+
   return (
     <div className="container">
       {/* Header */}
@@ -15,7 +24,7 @@ function HeatReport() {
         <div><span className="label">Shift:</span> <span className="value">{info.SHIFT_TEAM_NAME}</span></div>
         <div><span className="label">Foreman:</span> <span className="value"></span></div>
       </div>
-    </div>  
+    </div>
   )
 }
 
