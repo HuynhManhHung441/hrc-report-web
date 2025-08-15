@@ -9,23 +9,23 @@ function Home() {
       <div className="card">
         <h3>CCM</h3>
         <ul>
-          <li><Link to="/ccm/heat">Heat Report</Link></li>
-          <li><Link to="/ccm/shift">Shift Report</Link></li>
-          <li><Link to="/ccm/quality">Quality Report</Link></li>
+          <li><Link to="/ccm/heat-report">Heat Report</Link></li>
+          <li><Link to="/ccm/shift-report">Shift Report</Link></li>
+          <li><Link to="/ccm/quality-report">Quality Report</Link></li>
         </ul>
       </div>
 
       <div className="card">
         <h3>RHF</h3>
         <ul>
-          <li><Link to="/rhf">Slab Discharged</Link></li>
+          <li><Link to="/rhf/slab-discharged-report">Slab Discharged</Link></li>
         </ul>
       </div>
 
       <div className="card">
         <h3>HSM</h3>
         <ul>
-          <li><Link to="/hsm">Production Coil</Link></li>
+          <li><Link to="/hsm/production-coil-report">Production Coil</Link></li>
         </ul>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 function CCMHome() {
   return (
     <div className="container">
-      <h2 className="ccm-home-title">Pick type report</h2>
+      <h2 className="ccm-home-title">PICK TYPE CCM REPORT</h2>
       <ul className="ccm-home-list">
         <li>
           <Link to="/ccm/heat-report">Heat Report</Link>

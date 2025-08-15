@@ -1,5 +1,5 @@
 function SlabDischarged() {
-  return <div>Welcome to CCM Home</div>
+  return <div>Welcome to Slab Discharged Report</div>
 }
 
 export default SlabDischarged

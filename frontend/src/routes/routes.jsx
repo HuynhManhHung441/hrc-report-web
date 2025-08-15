@@ -12,9 +12,11 @@ import QualityReport from "../pages/ccm/QualityReport";
 import ShiftReport from "../pages/ccm/ShiftReport";
 
 // HSM pages
+import HsmHome from "../pages/hsm/HsmHome";
 import ProductionCoil from "../pages/hsm/ProductionCoil";
 
 // RHF pages
+import RhfHome from "../pages/rhf/RhfHome";
 import SlabDischarged from "../pages/rhf/SlabDischarged";
 
 const routes = [
@@ -35,10 +37,12 @@ const AppRoutes = () => (
     <Route path="/ccm/shift-report" element={<ShiftReport />} />
 
     {/* HSM */}
-    <Route path="/hsm/production-coil" element={<ProductionCoil />} />
+    <Route path="/hsm" element={<HsmHome />} />
+    <Route path="/hsm/production-coil-report" element={<ProductionCoil />} />
 
     {/* RHF */}
-    <Route path="/rhf/slab-discharged" element={<SlabDischarged />} />
+    <Route path="/rhf" element={<RhfHome />} />
+    <Route path="/rhf/slab-discharged-report" element={<SlabDischarged />} />
   </Routes>
 );
 

@@ -1,6 +1,6 @@
 
 function ShiftReport() {
-  return <div>Welcome to CCM Home</div>
+  return <div>Welcome to Shift Report</div>
 }
 
 export default ShiftReport
