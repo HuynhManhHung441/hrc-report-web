@@ -1,38 +1,125 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #1e293b;
-  padding: 1rem 2rem;
-  color: white;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  background: #f5f7fa;
+  padding: 0 24px;
+  height: 60px;
+  position: relative;
+  justify-content: space-between;
 }
 
-.navbar-logo a {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
-
-.navbar-links {
+.navbar-logo-menu {
+  position: relative;
   display: flex;
-  gap: 20px;
+  align-items: center;
+  cursor: pointer;
 }
 
-.navbar-links a {
-  color: white;
+.navbar-logo-link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
+}
+
+.navbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a237e;
+  margin-right: 8px;
+  letter-spacing: 1px;
+}
+
+.report-icon {
+  font-size: 1.4rem;
+  color: #1976d2;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: 32px;
+  flex: 1;
+}
+
+.navbar-menu-item {
+  color: #1a237e;
   font-weight: 500;
+  text-decoration: none;
+  font-size: 1.08rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
 }
 
-.navbar-links a:hover {
-  text-decoration: underline;
+.navbar-menu-item:hover {
+  background: #e3eafc;
+  color: #1976d2;
 }
 
-.navbar-links .active {
-  border-bottom: 2px solid white;
+.navbar-login {
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.login-icon {
+  font-size: 1.5rem;
+  color: #1976d2;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.login-icon:hover {
+  color: #0d47a1;
+}
+
+.side-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #fff;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 2px 4px 16px rgba(0,0,0,0.12);
+  min-width: 220px;
+  z-index: 100;
+  padding: 16px 0;
+  animation: fadeInLeft 0.2s;
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px);}
+  to { opacity: 1; transform: translateX(0);}
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0 16px;
+  margin: 0;
+}
+
+.side-menu > ul > li {
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.side-menu ul ul {
+  margin-top: 6px;
+  margin-bottom: 10px;
+  padding-left: 16px;
+}
+
+.side-menu ul ul li {
+  font-weight: normal;
+  margin-bottom: 6px;
+}
+
+.side-menu a {
+  color: #1976d2;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.side-menu a:hover {
+  color: #0d47a1;
 }
