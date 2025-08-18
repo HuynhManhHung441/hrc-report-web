@@ -9,7 +9,9 @@ function App() {
   return (
     <Router>
       <Header />
-      <AppRoutes />
+      <main className="main-content">
+        <AppRoutes />
+      </main>
     </Router>
   );
 }

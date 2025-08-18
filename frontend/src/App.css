@@ -6,6 +6,10 @@
   text-align: left; /* nên để left thay vì center cho giao diện thật */
 }
 
+.main-content {
+  padding-top: 60px; /* hoặc đúng bằng chiều cao .navbar */
+}
+
 /* Style cho logo nếu có */
 .logo {
   height: 6em;
