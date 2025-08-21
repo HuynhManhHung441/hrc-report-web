@@ -2,22 +2,12 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
 
-  // Đóng sidebar khi click ngoài vùng sidebar
-  const handleOverlayClick = (e) => {
-    if (e.target.classList.contains('sidebar-overlay')) {
-      setShowSidebar(false);
-      setOpenMenu(null);
-    }
-  };
-
-  // Toggle menu cấp 2
   const handleMenuClick = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
@@ -28,7 +18,7 @@ function Header() {
         <div
           className="navbar-logo-report"
           onMouseEnter={() => setShowSidebar(true)}
-          onMouseLeave={() => setShowSidebar(false)}
+          style={{ userSelect: 'none' }}
         >
           <span className="navbar-title">HRC REPORT</span>
         </div>
@@ -39,21 +29,19 @@ function Header() {
         </nav>
       </header>
 
-      {/* Sidebar menu */}
       {showSidebar && (
-        <div className="sidebar-overlay" onClick={handleOverlayClick}>
-          <aside
-            className="sidebar-menu"
-            onMouseEnter={() => setShowSidebar(true)}
-            onMouseLeave={() => setShowSidebar(false)}
-          >
+        <div className="sidebar-overlay">
+          <aside className="sidebar-menu">
+            <div className="sidebar-close-btn" onClick={() => setShowSidebar(false)}>
+              <FontAwesomeIcon icon={faDeleteLeft} />
+            </div>
             <ul className="sidebar-menu-list">
               {/* CCM */}
               <li className="sidebar-menu-item">
                 <div
                   className="sidebar-menu-label"
                   onClick={() => handleMenuClick('ccm')}
-                  style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+                  style={{ cursor: 'pointer' }}
                 >
                   <span>CCM</span>
                   <FontAwesomeIcon
@@ -62,7 +50,7 @@ function Header() {
                   />
                 </div>
                 {openMenu === 'ccm' && (
-                  <ul className="sidebar-submenu">
+                  <ul className="sidebar-submenu inline-submenu">
                     <li><Link to="/ccm/heat-report">Heat Report</Link></li>
                     <li><Link to="/ccm/shift-report">Shift Report</Link></li>
                     <li><Link to="/ccm/quality-report">Quality Report</Link></li>
@@ -74,7 +62,7 @@ function Header() {
                 <div
                   className="sidebar-menu-label"
                   onClick={() => handleMenuClick('rhf')}
-                  style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+                  style={{ cursor: 'pointer' }}
                 >
                   <span>RHF</span>
                   <FontAwesomeIcon
@@ -83,7 +71,7 @@ function Header() {
                   />
                 </div>
                 {openMenu === 'rhf' && (
-                  <ul className="sidebar-submenu">
+                  <ul className="sidebar-submenu inline-submenu">
                     <li><Link to="/rhf/slab-discharged-report">Slab Discharged</Link></li>
                   </ul>
                 )}
@@ -93,7 +81,7 @@ function Header() {
                 <div
                   className="sidebar-menu-label"
                   onClick={() => handleMenuClick('hsm')}
-                  style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+                  style={{ cursor: 'pointer' }}
                 >
                   <span>HSM</span>
                   <FontAwesomeIcon
@@ -102,7 +90,7 @@ function Header() {
                   />
                 </div>
                 {openMenu === 'hsm' && (
-                  <ul className="sidebar-submenu">
+                  <ul className="sidebar-submenu inline-submenu">
                     <li><Link to="/hsm/production-coil-report">Production Coil</Link></li>
                   </ul>
                 )}
