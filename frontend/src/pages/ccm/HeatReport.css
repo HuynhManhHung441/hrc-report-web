@@ -7,7 +7,7 @@
 }
 
 /* Header */
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,7 +34,7 @@
   gap: 30px;
   margin-top: 10px;
   font-size: 12px;
-}
+} */
 
 /* 4 cột */
 .section-row {
@@ -42,7 +42,7 @@
   justify-content: space-between;
   margin-top: 10px;
   gap: 40px;
-}
+} 
 
 /* Mỗi cột */
 .column {

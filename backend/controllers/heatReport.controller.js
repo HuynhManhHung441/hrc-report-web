@@ -278,6 +278,39 @@ const getStrandDataInfo = async (req, res) => {
   }
 };
 
+const getAnalysisDataInfo = async (req, res) => {
+  const { heatName } = req.params;
+  try {
+    const db = await connectDB();
+    const result = await db.query(`
+      SELECT
+        HEAT_NAME,
+        CASE
+          WHEN ORDER_BY = 1 THEN 'MIN'
+          WHEN ORDER_BY = 2 THEN 'AIM'
+          WHEN ORDER_BY = 3 THEN 'MAX'
+          ELSE DISPLAY_NAME
+        END AS Sample,
+        CASE
+          WHEN ORDER_BY IN (1, 2, 3) THEN NULL
+          ELSE FORMAT(ANALYSING_TIME, 'HH:mm')
+        END AS [Time],
+        CASE
+          WHEN ORDER_BY IN (1, 2, 3) THEN NULL
+          ELSE PERITECTIC
+        END AS Peri,
+        C, MN, P, S, SI, CU, NI, CR, AL, MO, SN, NB, V, TI, B, CA, N
+      FROM [CC2PRD].[CCM].[V_REP_ANALYSIS]
+      WHERE
+        HEAT_NAME = '${heatName}';
+    `);
+    res.json(result.recordset);
+  } catch (err) {
+    console.error('❌ Lỗi truy vấn Analysis Data:', err);
+    res.status(500).send('Lỗi truy vấn dữ liệu phần Analysis Data');
+  }
+};
+
 
 module.exports = {
   getGeneralInfo,
@@ -290,5 +323,6 @@ module.exports = {
   getLadleDepartureInfo,
   getTundishMaterialInfo,
   getTundishTempSporadicInfo,
-  getStrandDataInfo
+  getStrandDataInfo,
+  getAnalysisDataInfo
 };

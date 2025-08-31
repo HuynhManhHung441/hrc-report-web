@@ -1,0 +1,44 @@
+.analysis-section {
+  margin-top: 40px;
+  width: 100%;
+  font-size: 12px;
+}
+.table-scroll {
+  width: 100%;
+  overflow-x: visible;
+  box-sizing: border-box;
+}
+.analysis-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: auto;
+  background: #fff;
+  font-size: 12px;
+}
+.analysis-table th, .analysis-table td {
+  border: 1px solid #ccc;
+  padding: 3px 3px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.analysis-table th {
+  font-weight: 300;
+}
+.analysis-table tr:nth-child(2) td,
+.analysis-table tr:nth-child(4) td,
+.analysis-table tr:nth-child(6) td,
+.analysis-table tr:nth-child(8) td,
+.analysis-table tr:nth-child(10) td {
+  background-color: #d5d4d4;
+  font-weight: 500;
+}
+.analysis-table tr td:first-child {
+  font-weight: 500;
+  background: #f7f7f7;
+}
+
+.out-of-range {
+  background-color: #ff4c4c !important;
+  color: #fff;
+  font-weight: bold;
+}

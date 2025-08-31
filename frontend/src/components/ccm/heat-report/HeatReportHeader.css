@@ -1,0 +1,44 @@
+.heat-report-header {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 12px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid black;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.heat-title {
+  color: orange;
+  font-size: 22px;
+  font-weight: 100;
+  margin: 0;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.label {
+  color: gray;
+}
+
+.value {
+  color: black;
+  text-align: right;
+  min-width: 40px;
+}

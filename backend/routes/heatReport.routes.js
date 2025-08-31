@@ -13,5 +13,7 @@ router.get('/ladle-departure-section/:heatName', heatController.getLadleDepartur
 router.get('/tundish-material-section/:heatName', heatController.getTundishMaterialInfo);
 router.get('/tundish-temp-sporadic/:heatName', heatController.getTundishTempSporadicInfo);
 router.get('/strand-data-section/:heatName', heatController.getStrandDataInfo);
+router.get('/analysis-data-section/:heatName', heatController.getAnalysisDataInfo);
+
 
 module.exports = router;
