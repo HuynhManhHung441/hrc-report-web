@@ -14,6 +14,7 @@ router.get('/tundish-material-section/:heatName', heatController.getTundishMater
 router.get('/tundish-temp-sporadic/:heatName', heatController.getTundishTempSporadicInfo);
 router.get('/strand-data-section/:heatName', heatController.getStrandDataInfo);
 router.get('/analysis-data-section/:heatName', heatController.getAnalysisDataInfo);
-
+router.get('/slab-data/:heatName', heatController.getSlabDataInfo);
+router.get('/slab-section-data/:heatName', heatController.getSlabSectionDataInfo);
 
 module.exports = router;

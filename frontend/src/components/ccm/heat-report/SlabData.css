@@ -1,0 +1,35 @@
+.slab-section {
+  margin-top: 20px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.section-title {
+  text-align: left;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.slab-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.slab-table th,
+.slab-table td {
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.slab-table thead th {
+  background-color: #f9f9f9;
+  font-weight: 300
+}
+
+.slab-table tbody tr:nth-child(even) td {
+  background-color: #d5d4d4;
+  font-weight: 500;
+}
+

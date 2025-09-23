@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './HeatReport.css';
 
 import HeatReportHeader from '../../components/ccm/heat-report/HeatReportHeader';
@@ -16,25 +15,19 @@ import TundishTempSporadic from '../../components/ccm/heat-report/TundishTempSpo
 import TundishTempContinuous from '../../components/ccm/heat-report/TundishTempContinuous';
 import StrandDataSection from '../../components/ccm/heat-report/StrandDataSection';
 import AnalysisDataSection from '../../components/ccm/heat-report/AnalysisDataSection';
+import SlabData from '../../components/ccm/heat-report/SlabData';
+import SlabSectionData from '../../components/ccm/heat-report/SlabSectionData';
 
 function HeatReport() {
-  const [info, setInfo] = useState(null);
   const [heatName, setHeatName] = useState('25F003353');
   const [heatNameInput, setHeatNameInput] = useState();
-  useEffect(() => {
-    // Gọi API lấy dữ liệu phần Header
-    axios.get(`http://localhost:5000/api/heat-report/general-info/${heatName}`)
-      .then(res => setInfo(res.data))
-      .catch(err => console.error('❌ Lỗi gọi API:', err));
-  }, [heatName]);
 
   const handleSearch = () => {
-    if (!heatNameInput.trim()) return; // nếu input rỗng thì không làm gì
-    setHeatName(heatNameInput.trim()); // load dữ liệu mới
-    setHeatNameInput(""); // reset lại input về rỗng
+    if (!heatNameInput.trim()) return; 
+    setHeatName(heatNameInput.trim());
+    setHeatNameInput("");
   };
 
-  if (!info) return <div>Đang tải dữ liệu...</div>;
   return (
     <div className="container">
       {/* Header */}
@@ -70,6 +63,8 @@ function HeatReport() {
         </div>
         <StrandDataSection heatName={heatName} />
         <AnalysisDataSection heatName={heatName} />
+        <SlabData heatName={heatName} />
+        <SlabSectionData heatName={heatName} />
       </div>
 
       <div className="heat-report__search">
@@ -81,7 +76,6 @@ function HeatReport() {
           />
         <button onClick={handleSearch}>Search</button>
       </div>
-
     </div>
   );
 }

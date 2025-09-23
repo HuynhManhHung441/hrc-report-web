@@ -36,6 +36,12 @@
   text-decoration: underline;
 }
 
+.navbar__report-name {
+  font-size: 25px;
+  color: orange;
+  margin-right: 5px;
+}
+
 .sidebar-overlay {
   position: fixed;
   top: 60px;
@@ -86,7 +92,6 @@
   font-weight: bold;
   cursor: pointer;
   border-bottom: 1px solid #e5e7eb;
-  /* background: none; */
 }
 
 .sidebar-menu-item:hover,
@@ -102,7 +107,6 @@
 }
 
 .sidebar-down-icon {
-  /* margin-left: 80px; */
   color: rgb(255, 255, 255);
   transition: transform 0.5s;
 }
@@ -115,11 +119,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  /* min-width: 200px; */
-  /* background: #f8fafc; */
   box-shadow: 2px 2px 12px rgba(0,0,0,0.08);
   border-radius: 0 8px 8px 0;
-  /* padding: 12px 0; */
   z-index: 1002;
 }
 
@@ -145,7 +146,6 @@
 
 .inline-submenu {
   position: static !important;
-  /* background: rgba(30, 41, 59, 0.80); */
   box-shadow: none;
   border-radius: 0;
   margin: 0;

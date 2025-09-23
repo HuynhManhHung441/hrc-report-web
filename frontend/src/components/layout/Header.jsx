@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faDeleteLeft, faUserCircle, faCircleDot } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -20,13 +20,20 @@ function Header() {
           onMouseEnter={() => setShowSidebar(true)}
           style={{ userSelect: 'none' }}
         >
-          <span className="navbar-title">HRC REPORT</span>
+          <div className="navbar-title">
+            <span className='navbar__report-name'>HRC REPORT</span> 
+            <FontAwesomeIcon icon={faCircleDot} />
+          </div>
         </div>
         <nav className="navbar-links">
           <Link to="/ccm">CCM</Link>
           <Link to="/rhf">RHF</Link>
           <Link to="/hsm">HSM</Link>
         </nav>
+        <div className="sign-in">
+          <FontAwesomeIcon icon={faUserCircle} />
+          <span>Sign In</span>
+        </div>
       </header>
 
       {showSidebar && (
