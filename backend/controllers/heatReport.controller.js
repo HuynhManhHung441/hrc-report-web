@@ -1,4 +1,7 @@
+const fs = require('fs');
+const path = require('path');
 const connectDB = require('../config/db');
+
 
 const getGeneralInfo = async (req, res) => {
   const { heatName } = req.params;  // Lấy heatName từ URL khi gọi API
@@ -378,6 +381,39 @@ const getSlabSectionDataInfo = async (req, res) => {
 };
 
 
+const exportSlabWeightByDate = async (req, res) => {
+  try {
+    const db = await connectDB();
+    const result = await db.query(`
+      SELECT TOP 10
+        FORMAT(h.LADLE_OPEN_TIME, 'dd/MM/yy') AS date,
+        SUM(CAST(p.WEIGHT_MEASURED/1000 AS DECIMAL(10,2))) AS total_weight
+      FROM [CC2PRD].[CCM].[V_REP_PRODUCTS] AS p
+      INNER JOIN [CC2PRD].[CCM].[V_REP_HEAT] AS h 
+        ON p.HEAT_ID = h.HEAT_ID
+      GROUP BY FORMAT(h.LADLE_OPEN_TIME, 'dd/MM/yy')
+      ORDER BY MIN(h.LADLE_OPEN_TIME) DESC
+    `);
+
+    const data = result.recordset.reverse();
+    console.log(data);
+    // Đảm bảo thư mục data tồn tại
+    const dataDir = path.join(__dirname, '../data');
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+
+    const filePath = path.join(dataDir, 'slab_chart_data.json');
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
+
+    res.json({ message: 'Export thành công', data });
+  } catch (err) {
+    console.error('❌ Lỗi export slab chart:', err);
+    res.status(500).send('Lỗi export slab chart');
+  }
+};
+
+
 module.exports = {
   getGeneralInfo,
   getGeneralSectionInfo,
@@ -392,5 +428,6 @@ module.exports = {
   getStrandDataInfo,
   getAnalysisDataInfo,
   getSlabDataInfo,
-  getSlabSectionDataInfo
+  getSlabSectionDataInfo,
+  exportSlabWeightByDate
 };
