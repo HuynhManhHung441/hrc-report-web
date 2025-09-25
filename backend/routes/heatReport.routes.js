@@ -16,10 +16,10 @@ router.get('/strand-data-section/:heatName', heatController.getStrandDataInfo);
 router.get('/analysis-data-section/:heatName', heatController.getAnalysisDataInfo);
 router.get('/slab-data/:heatName', heatController.getSlabDataInfo);
 router.get('/slab-section-data/:heatName', heatController.getSlabSectionDataInfo);
-router.get('/export-slab-chart', heatController.exportSlabWeightByDate);
-router.get('/slab-chart-data', (req, res) => {
-  const path = require('path');
-  res.sendFile(path.join(__dirname, '../data/slab_chart_data.json'));
-});
+router.get('/slab-weight-by-month', heatController.exportSlabWeightByMonth);
+// router.get('/slab-weight-by-month', (req, res) => {
+//   const path = require('path');
+//   res.sendFile(path.join(__dirname, '../data/slab_chart_data.json'));
+// });
 
 module.exports = router;

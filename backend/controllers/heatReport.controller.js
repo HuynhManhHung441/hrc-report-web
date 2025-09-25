@@ -1,12 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const connectDB = require('../config/db');
-
+const connectCcm2Db = require('../config/SqlServer');
+const connectCcmMySQL = require('../config/mysql');
 
 const getGeneralInfo = async (req, res) => {
   const { heatName } = req.params;  // Lấy heatName từ URL khi gọi API
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT TOP 1 
         HEAT_NAME,
@@ -27,7 +27,7 @@ const getGeneralInfo = async (req, res) => {
 const getGeneralSectionInfo = async (req, res) => {
   const { heatName } = req.params;  // Lấy heatName từ URL khi gọi API
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT TOP(1) 
         CAST_NAME, HEAT_IN_CAST, STEEL_DENSITY_COLD,
@@ -46,7 +46,7 @@ const getGeneralSectionInfo = async (req, res) => {
 const getLadleSectionInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT TOP 1 
         LADLE_NAME, TURRET_ARM
@@ -64,7 +64,7 @@ const getLadleSectionInfo = async (req, res) => {
 const getLadleArrivalInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT TOP(1)
         FORMAT(LADLE_ARRIVE_TIME, 'HH:mm') AS LADLE_ARRIVE_TIME, 
@@ -84,7 +84,7 @@ const getLadleArrivalInfo = async (req, res) => {
 const getTundishInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT
           h.HEAT_NAME,
@@ -109,7 +109,7 @@ const getTundishInfo = async (req, res) => {
 const getShroudInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT
       [HEAT_NAME],
@@ -127,7 +127,7 @@ const getShroudInfo = async (req, res) => {
 const getSteelLossInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT 
         h.HEAT_NAME,
@@ -155,7 +155,7 @@ const getSteelLossInfo = async (req, res) => {
 const getLadleDepartureInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT 
         HEAT_NAME,
@@ -181,7 +181,7 @@ const getLadleDepartureInfo = async (req, res) => {
 const getTundishMaterialInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT 
         MAX(CASE p.POWDER_TYPE WHEN 'TD_SLAG' THEN p.POWDER_NAME END) AS TD_SLAG_NAME,
@@ -210,7 +210,7 @@ const getTundishMaterialInfo = async (req, res) => {
 const getTundishTempSporadicInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT 
         [HEAT_NAME],
@@ -235,7 +235,7 @@ const getTundishTempSporadicInfo = async (req, res) => {
 const getStrandDataInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT DISTINCT
         h.HEAT_ID,
@@ -284,7 +284,7 @@ const getStrandDataInfo = async (req, res) => {
 const getAnalysisDataInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT
         HEAT_NAME,
@@ -317,7 +317,7 @@ const getAnalysisDataInfo = async (req, res) => {
 const getSlabDataInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT 
         p.HEAT_ID,
@@ -357,7 +357,7 @@ const getSlabDataInfo = async (req, res) => {
 const getSlabSectionDataInfo = async (req, res) => {
   const { heatName } = req.params;
   try {
-    const db = await connectDB();
+    const db = await connectCcm2Db();
     const result = await db.query(`
       SELECT 
         s.HEAT_ID,
@@ -381,35 +381,29 @@ const getSlabSectionDataInfo = async (req, res) => {
 };
 
 
-const exportSlabWeightByDate = async (req, res) => {
+const exportSlabWeightByMonth = async (req, res) => {
   try {
-    const db = await connectDB();
-    const result = await db.query(`
-      SELECT TOP 10
-        FORMAT(h.LADLE_OPEN_TIME, 'dd/MM/yy') AS date,
-        SUM(CAST(p.WEIGHT_MEASURED/1000 AS DECIMAL(10,2))) AS total_weight
-      FROM [CC2PRD].[CCM].[V_REP_PRODUCTS] AS p
-      INNER JOIN [CC2PRD].[CCM].[V_REP_HEAT] AS h 
-        ON p.HEAT_ID = h.HEAT_ID
-      GROUP BY FORMAT(h.LADLE_OPEN_TIME, 'dd/MM/yy')
-      ORDER BY MIN(h.LADLE_OPEN_TIME) DESC
+    const db = await connectCcmMySQL();
+
+    const [rows] = await db.query(`
+      SELECT 
+        YEAR(CUT_TIME) AS year,
+        MONTH(CUT_TIME) AS month,
+        SUM(WEIGHT_ACT) AS total_weight
+      FROM ccm_db.ccm_heat_report_slab_data
+      WHERE YEAR(CUT_TIME) = (
+        SELECT MAX(YEAR(CUT_TIME)) 
+        FROM ccm_db.ccm_heat_report_slab_data
+      )
+      GROUP BY YEAR(CUT_TIME), MONTH(CUT_TIME)
+      ORDER BY year, month;
     `);
 
-    const data = result.recordset.reverse();
-    console.log(data);
-    // Đảm bảo thư mục data tồn tại
-    const dataDir = path.join(__dirname, '../data');
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
-
-    const filePath = path.join(dataDir, 'slab_chart_data.json');
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
-
-    res.json({ message: 'Export thành công', data });
-  } catch (err) {
-    console.error('❌ Lỗi export slab chart:', err);
-    res.status(500).send('Lỗi export slab chart');
+    res.json(rows);
+    console.log(res.json(rows));
+  } catch (error) {
+    console.error("❌ Error in exportSlabWeightByMonth:", error);
+    res.status(500).json({ error: "Lỗi khi lấy dữ liệu slab weight by month" });
   }
 };
 
@@ -429,5 +423,5 @@ module.exports = {
   getAnalysisDataInfo,
   getSlabDataInfo,
   getSlabSectionDataInfo,
-  exportSlabWeightByDate
+  exportSlabWeightByMonth
 };
